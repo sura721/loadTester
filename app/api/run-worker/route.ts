@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
     });
 
     const page = await browser.newPage();
-    await page.goto(url, { waitUntil: 'domcontentloaded' });  
+await page.goto(url, { waitUntil: 'networkidle' });
      const metrics = await page.evaluate(() => {
       const paintTimings = performance.getEntriesByType('paint');
       const fcp = paintTimings.find(p => p.name === 'first-contentful-paint')?.startTime;
